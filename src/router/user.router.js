@@ -1,7 +1,7 @@
 const KoaRouter = require('@koa/router')
 
 const userController = require('../controller/user.controller')
-// const { verifyUser, handlePassword } = require('../middleware/user.middleware')
+const { verifyUser, handlePassword } = require('../middleware/user.middleware')
 
 // 1.创建路由对象
 const userRouter = new KoaRouter({ prefix: '/users' })
@@ -14,7 +14,8 @@ const userRouter = new KoaRouter({ prefix: '/users' })
 //   ctx.body = "创建成功"
 // })
 
-userRouter.post('/', userController.create)
+// 多个中间件
+userRouter.post('/', verifyUser, handlePassword, userController.create)
 
 
 // 3.导出路由
