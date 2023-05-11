@@ -13,6 +13,10 @@ class LoginController {
 
     ctx.body = { code: 0, data: { id, name, token } }
   }
+
+  test(ctx, next) {
+    ctx.body = `验证身份通过~`
+  }
 }
 
 module.exports = new LoginController()

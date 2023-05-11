@@ -1,4 +1,13 @@
-const { NAME_OR_PASSWORD_IS_REQUIRED, NAME_IS_NOT_EXISTS, PASSWORD_IS_INCORRENT } = require('../config/error')
+const jwt = require('jsonwebtoken')
+
+const { 
+  NAME_OR_PASSWORD_IS_REQUIRED, 
+  NAME_IS_NOT_EXISTS, 
+  PASSWORD_IS_INCORRENT,
+  UNAUTHORIZATION
+} = require('../config/error')
+
+const { PUBLIC_KEY } = require('../config/screct')
 
 const userService = require('../service/user.service')
 
@@ -30,6 +39,34 @@ const verifyLogin = async (ctx, next) => {
   await next()
 }
 
+const verifyAuth = async (ctx, next) => {
+  // 获取token
+  const authorization = ctx.headers.authorization
+
+  if (!authorization) {
+    return ctx.app.emit('error', UNAUTHORIZATION, ctx)
+  }
+
+  const token = authorization.replace('Bearer ', '')
+
+  // 验证token是否有效
+  try {
+    const result = jwt.verify(token, PUBLIC_KEY, {
+      algorithms: ['RS256']
+    })
+
+    // 2.将token的信息保留下来
+    ctx.user = result
+
+    // 3.执行下一个中间件
+    await next()
+
+  } catch (error) {
+    ctx.app.emit('error', UNAUTHORIZATION, ctx)
+  }
+}
+
 module.exports = {
-  verifyLogin
+  verifyLogin,
+  verifyAuth
 }

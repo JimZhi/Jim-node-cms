@@ -4,7 +4,8 @@ const {
   NAME_OR_PASSWORD_IS_REQUIRED, 
   NAME_IS_ALREADY_EXISTS, 
   NAME_IS_NOT_EXISTS,
-  PASSWORD_IS_INCORRENT
+  PASSWORD_IS_INCORRENT,
+  UNAUTHORIZATION
 } = require('../config/error')
 
 app.on('error', (error, ctx) => {
@@ -30,6 +31,16 @@ app.on('error', (error, ctx) => {
     case PASSWORD_IS_INCORRENT:
       code = -1004
       message = '密码不正确~'
+      break
+
+    case UNAUTHORIZATION:
+      code = -1005
+      message = '无效的token或者token已经过期~'
+      break
+
+    case OPERATION_IS_NOT_ALLOWED:
+      code = -2001
+      message = '没有操作该资源的权限~'
       break
   }
 
