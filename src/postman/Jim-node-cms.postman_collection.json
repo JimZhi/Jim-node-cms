@@ -1,0 +1,206 @@
+{
+	"info": {
+		"_postman_id": "a1ef6124-5a74-4d44-bca5-9b8338b9b750",
+		"name": "Jim-node-cms",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "用户模块",
+			"item": [
+				{
+					"name": "用户注册",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"luffy3\",\r\n    \"password\":\"123456333\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/moment/4",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"moment",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "登录模块",
+			"item": [
+				{
+					"name": "用户登录",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"luffy3\",\r\n    \"password\": \"123456333\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/login",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "登录验证",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwibmFtZSI6Imx1ZmZ5MyIsImlhdCI6MTY4Mzg1NjE3MiwiZXhwIjoxNjgzOTQyNTcyfQ.OVts-DtSFrGKiqPc0mn9ruf7vDAfCnGaE62nAiUHJRKLON3ywWEgUrX098wJWezohKYzuqvpeY94H7V-r5FqFcDHV7KUg4whDxZmK1cvQV7cUytK8-cnDDzvti_gaBi0ccfbAm293g2Q5OCWYKcuIaPk1SFQWniIhriqiMiT5dI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/login/test",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"login",
+								"test"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "发布动态",
+			"item": [
+				{
+					"name": "发布内容",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwibmFtZSI6Imx1ZmZ5MyIsImlhdCI6MTY4Mzg1NjI1NiwiZXhwIjoxNjgzOTQyNjU2fQ.nPNsWs52yt2JUELe7LlXmTT5h1_cOHEQH7cLGRQnzaXq6qVpU4vi_5dmpqAPpVHspUE-E4es0QPH2S2KdA1PolGna32fy35ABEO4k9kQDbUKjZOvVGZZhAPDusKQieGsj8gpWMkzg34Y2p79z4oeSJV8UagGVgpBWIL7TU-X6kc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\": \"支持者12312312341231\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/moment",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"moment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "查询列表数据",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/moment?offset=0&size=10",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"moment"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "查询详情",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "删除某条详情",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "修改某条详情",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
