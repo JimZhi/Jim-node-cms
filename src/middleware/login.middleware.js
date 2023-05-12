@@ -48,6 +48,7 @@ const verifyAuth = async (ctx, next) => {
   }
 
   const token = authorization.replace('Bearer ', '')
+  console.log(token)
 
   // 验证token是否有效
   try {
